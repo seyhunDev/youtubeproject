@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>YouTube</h1>
+    <form method="POST">
+        <input type="text" id="search_query" name="search_query"  required>
+        <button type="submit">Ara</button>
+    </form>
+    {{ search_query|default("") }}
+    {% if search_query %}
+        <div class="search_word">Aranan Kelime: {{ search_query }}</div>
+    {% endif %}
+
+
+    <h2>SON 24 SAAT</h2>
+    <div class="video-slider">
+        <ul class="video-list">
+            {% for video in video_details_two %}
+                <li class="video-item">
+                    <a href="https://www.youtube.com/watch?v={{ video.id }}" target="_blank">
+                        <img src="{{ thumbnails_two[video.id] }}" alt="{{ video.snippet.title }}" width="320" height="180">
+                        <div class="info">{{ video.snippet.title }}
+                        </div> 
+                        <div class="info_2">
+                            <span class="view-count">{{ video.statistics.viewCount }}</span>
+                            <span class="view-text">wievs</span>
+                          </div>  
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <h2>SON 1 HAFTA</h2>
+    <div class="video-slider">
+        <ul class="video-list">
+            {% for video in video_details %}
+                <li class="video-item">
+                    <a href="https://www.youtube.com/watch?v={{ video.id }}" target="_blank">
+                        <img src="{{ thumbnails[video.id] }}" alt="{{ video.snippet.title }}" width="320" height="180">
+                        <div class="info">{{ video.snippet.title }}
+                        </div> 
+                        <div class="info_2">
+                            <span class="view-count">{{ video.statistics.viewCount }}</span>
+                            <span class="view-text">wievs</span>
+                          </div>  
+                                                                
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    
+
+    <h2>SON 30 GUN</h2>
+    <div class="video-slider">
+        <ul class="video-list">
+            {% for video in video_details_three %}
+                <li class="video-item">
+                    <a href="https://www.youtube.com/watch?v={{ video.id }}" target="_blank">
+                        <img src="{{ thumbnails_three[video.id] }}" alt="{{ video.snippet.title }}" width="320" height="180">
+                        <div class="info">{{ video.snippet.title }}
+                        </div> 
+                        <div class="info_2">
+                            <span class="view-count">{{ video.statistics.viewCount }}</span>
+                            <span class="view-text">wievs</span>
+                          </div>  
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
